@@ -1,0 +1,13 @@
+{% extends "area/base.html" %}
+    {% block title %}这是子模板{% endblock title %}
+{% block b1 %}
+    {{ block.super }}
+    <h1>这是重写父模板中模块一的内容</h1>
+{% endblock b1 %}
+{% block b2 %}
+{#    {{ block.super }}#}
+    <h1>这是重写父模板中模块二的内容</h1>
+{% endblock b2 %}
+{% block content %}
+    <h1>这是重写的父模板中预留的块</h1>
+{% endblock content %}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}这是父模板{% endblock title %}</title>
+
+</head>
+<body>
+{% block b1 %}
+<h1>这是父模板中的内容---模块一</h1>
+{% endblock b1 %}
+{% block b2 %}
+<h1>这是父模板中的内容---模块二</h1>
+{% endblock b2 %}
+{% block b3 %}
+<h1>这是父模板中的内容----模块三</h1>
+     {% block content %}
+    {% endblock content %}
+{% endblock b3 %}
+</body>
+</html>

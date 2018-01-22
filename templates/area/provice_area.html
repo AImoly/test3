@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分页显示所有省级地区</title>
+</head>
+<body>
+    <ul>
+        {% for area in areas.object_list %}
+            <li>{{ area.atitle }}</li>
+        {% endfor %}
+    </ul>
+    {% if areas.has_previous %}
+        <a href="/provice_area/{{ areas.previous_page_number }}">上一页</a>
+
+    {% endif %}
+    {%  for pindex in areas.paginator.page_range %}
+        {%  if pindex == areas.number %}
+            {{ pindex }}
+        {% else %}
+        <a href="/provice_area/{{ pindex }}">{{ pindex }}</a>
+        {% endif %}
+    {% endfor %}
+    {% if areas.has_next %}
+        <a href="/provice_area/{{ areas.next_page_number }}">上一页</a>
+
+    {% endif %}
+</body>
+</html>

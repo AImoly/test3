@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示省市县案例</title>
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <script>
+        $(function () {
+            var prov = $("#prov")
+            $.get("/prov/", function (data) {
+                {#        循环获取每个地区的值       #}
+                for (i = 0; i < data.val.length; i++) {
+{#                    console.log(data.val[i])#}
+                    options = '<option value="'+data.val[i][0]+'">'+data.val[i][1]+"</option>"
+                    prov.append(options)
+                }
+
+             prov.change(function () {
+                 var city = $("#city")
+                 city.empty().append('<option value="">---市级地区---</option>')
+                 var dis = $("#dis")
+                 dis.empty().append('<option value="">---县级地区---</option>')
+                 $.get("/city/"+$(this).val()+'/',function (data) {
+
+                     for (i = 0; i < data.val.length; i++) {
+                    console.log(data.val[i])
+                    options = '<option value="'+data.val[i][0]+'">'+data.val[i][1]+"</option>"
+                    city.append(options)
+                }
+                 })
+             })
+
+             $("#city").change(function () {
+                 var dis = $("#dis")
+                 dis.empty().append('<option value="">---县级地区---</option>')
+                 $.get("/dis/"+$(this).val()+'/',function (data) {
+
+                     for (i = 0; i < data.val.length; i++) {
+                    console.log(data.val[i])
+                    options = '<option value="'+data.val[i][0]+'">'+data.val[i][1]+"</option>"
+                    dis.append(options)
+                }
+                 })
+             })
+
+
+            })
+        })
+
+
+    </script>
+</head>
+<body>
+<select name="prov" id="prov">
+    <option value="">---省级地区---</option>
+</select>
+<select name="city" id="city">
+    <option value="">---市级地区---</option>
+</select>
+<select name="dis" id="dis">
+    <option value="">---县级地区---</option>
+</select>
+</body>
+</html>
